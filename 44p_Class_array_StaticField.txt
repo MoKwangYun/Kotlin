@@ -1,0 +1,77 @@
+class Car{ //클래스 정의
+    var color : String = ""
+    var speed : Int = 0
+    
+    fun maxSpeed(value : Int) : Int{ //Int 리턴 타입의 함수 maxSpeed(Int타입 인자 value 받는다)
+        var max : Int = (speed + value) * 2
+        return  max
+    }
+    
+    constructor(color:String, speed:Int){ //String, Int타입 인자를 하나 씩 받는 생성자
+        this.color = color
+        this.speed = speed
+    }
+    
+    constructor(){}//생성자가 하나 존재하기 때문에 기본 생성자 역시 명시 해줘야 사용가능
+    
+    
+    //정적 구성요소 : 클래스 내부에 인스턴스 생성 않고 클래스 자체에서 사용되는 변수 or 메소드 or 상수
+    // --> companion object{ } 안에 작성
+    // main에서 사용시 객체명.변수 or메소드 가 아니라 클래스명.변수or메소드로 사용
+    // 
+    companion object{
+        var carCount = 0
+        fun currentcarCount() :Int{
+            return carCount
+        }
+        const val limitspeed = 500; //정적 상수로 class내에서도 한번 초기화시 변경 불가
+    }
+}
+fun main() {
+    //1차원 배열
+    //var 배열이름 = Array<자료형> (개수, {초깃값})
+    var array1 = Array<Int>(3, {0})
+    array1[1] = 1
+    array1[2] = 2
+    
+    //2차원 배열
+    //var 배열 이름 = Array<배열자료형>(행개수, {배열자료형(열개수)})
+	var array2 = Array<IntArray>(2, {IntArray(3)})  //2행 3열의 2차원 배열생성
+    
+    //for문
+    for(i in array1.indices){ // //배열의 원소 개수만큼 변수에 대입하여 반복, i에 0, 1, 2가 대입됨
+        print("array["+i)
+        println("]: " + array1[i])
+    }
+    
+    for(i in 0..2 step 2){ //i에 0~2까지 들어가는데 한 번 반복할 때 +2
+        println("array[" + i + "] :" + array1[i])
+    }
+    
+    for(i in array1){ //뒤에 .indices를 붙여주지 않으면 i에 배열의 내용이 차례로 i에 들어간다
+        println(i)
+    }
+    
+    //===연산자 : 해당 변수가 갖는 주소값이 동일한가
+    
+    
+    var myCar1 : Car = Car() //Car객체 생성(인자가 없는 생성자 실행)
+    myCar1.color = "Red" 
+    myCar1.speed = 100
+    Car.carCount++//main에서 정적 구성요소 사용 방법(객체명이 아닌 클래스명으로 호출)
+    
+    var myCar2 : Car = Car("Blue",80) //String, Int타입 인자를 하나씩 받는 생성자를 호출
+  	Car.carCount++
+    
+    println("자동차1 색상 : " + myCar1.color)
+    println("자동차1 최대속력 : " + myCar1.maxSpeed(50))
+    
+    
+    println("자동차2 색상 : " + myCar2.color)
+    println("자동차2 최대속력 : " + myCar2.maxSpeed(50))
+    
+    println("현재 자동차 개수 : " + Car.currentcarCount())
+    println("제한속도 : " + Car.limitspeed)
+    
+    
+}

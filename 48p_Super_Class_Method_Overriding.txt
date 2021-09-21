@@ -1,0 +1,47 @@
+/**
+ * You can edit, run, and share this code. 
+ * play.kotlinlang.org 
+ */
+open class Car{ //open 선언을 통해 상속 허용
+    var color : String = ""
+    var speed : Int = 0
+    
+    open fun maxSpeed(value : Int) : Int{ //슈퍼클래스의 함수도 open 선언을 해야 메소드 오버라이딩 가능
+        var max : Int = (speed + value) * 2
+        return  max
+    }
+    
+    constructor(color:String, speed:Int){ //String, Int타입 인자를 하나 씩 받는 생성자
+        this.color = color
+        this.speed = speed
+    }
+    
+    constructor(){}//생성자가 하나 존재하기 때문에 기본 생성자 역시 명시 해줘야 사용가능
+    
+}
+
+class Automobile : Car{ //Car클래스를 상속하는  서브클래스 Automobile
+    //슈퍼클래스 Car에서 선언된 변수, 메소드 추가적인 선언 없이 사용가능
+    
+    //Car에서 선언된 maxSpeed와 다르게 Automobile 객체에서 호출하는 maxSpeed함수를 수정 == 메소드 오버라이딩
+    override fun maxSpeed(value : Int):Int{
+        var max : Int = (speed+value) * 3 
+        return max
+    }
+    
+    var price : Int = 0;
+    
+    constructor (color : String, speed : Int, price : Int){
+        this.color = color
+        this.speed = speed
+        this.price = price
+    }
+    
+}
+fun main(){
+    var auto : Automobile = Automobile("Red", 100, 1000)
+   
+    println("색상 : " + auto.color)
+    println("속도 : " + auto.maxSpeed(10))
+    println("가격 : " + auto.price)
+}
