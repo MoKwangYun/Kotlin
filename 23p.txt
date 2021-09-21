@@ -1,0 +1,35 @@
+fun main() {
+    println("Hello, world!!!")
+    
+    var num : Int = 100
+    var ch : Char = '안' //Kotlin에서 char은 2byte이다.
+    var str : String = "녕하세요"
+    
+    println("num : " + num + " " + ch + str)
+    
+    var rand1 = 100.1
+    val rand2 = "I'm string"
+    //변수 암시적 선언 (: type) 와 같이 자료형을 지정해주지 않은면 대입되는 값에 따라 변수 자료형 결정
+    //암시적 선언의 경우 반드시 선언과 동시에 초기화를 해주어야 함
+    //var : 선언 이후 필요에 따라 저장된 값 변경 가능
+    //val : 한 번 값 대입한이후 변경 불가
+    
+    println(rand1)
+    println(rand2)
+    
+    var str1 : String = 100.toString() // int 타입의 100을 String으로 바꿔서 대입
+    var num1 : Int = "100".toInt()  //String타입  "100"을 Int로 바꿔서  대입    
+    println(str1)
+    println(num1)
+    
+    when(num1){ //switch문과 유사
+        100 -> println("Perfect")
+        90 -> println("awesome")
+        80 -> println("good") //num1 == 80일 때 -> 이후의 코드 수행
+        
+        70, 60, 50 -> println("normal")  // 70이나 60이나 50일 때
+        
+        else -> println("fail") //위의 조건에 속하지 않을 때
+        
+    }
+}
